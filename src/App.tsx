@@ -3,24 +3,17 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <section className="nav">
+                <h1>読みたい本リスト</h1>
+                <div className="button-like">本を追加</div>
+            </section>
+            <section className="main">
+                <h1>Book List</h1>
+            </section>
+        </div>
+    );
 }
 
 export default App;
