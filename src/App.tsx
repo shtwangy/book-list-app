@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import { BookToRead } from "./types/BookToRead";
 import BookRow from "./BookRow";
@@ -24,8 +24,9 @@ const dummyBooks: BookToRead[] = [
     }
 ];
 
-function App() {
-    const bookRows = dummyBooks.map((b) => {
+const App = () => {
+    const [books, setBooks] = useState(dummyBooks);
+    const bookRows = books.map((b) => {
         return (
             <BookRow
                 book={b}
