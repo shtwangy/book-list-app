@@ -32,10 +32,15 @@ const App = () => {
                 book={b}
                 key={b.id}
                 onMemoChange={(id, memo) => {}}
-                onDelete={(id) => {}}
+                onDelete={(id) => handleBookDelete(id)}
             />
         );
     });
+
+    const handleBookDelete = (id: number) => {
+        const newBooks = books.filter((b) => b.id !== id);
+        setBooks(newBooks);
+    };
 
     return (
         <div className="App">
