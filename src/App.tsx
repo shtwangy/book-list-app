@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import { BookToRead } from "./types/BookToRead";
 import BookRow from "./BookRow";
 import Modal from "react-modal";
 import BookSearchDialog from "./BookSearchDialog";
 import {BookDescription} from "./types/BookDescription";
+
+const APP_KEY = "book-list-app";
 
 Modal.setAppElement("#root");
 
@@ -26,6 +28,17 @@ const customStyles = {
 const App = () => {
     const [books, setBooks] = useState([] as BookToRead[]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    useEffect(() => {
+        const storedBooks = localStorage.getItem(APP_KEY);
+        if (storedBooks) {
+            setBooks(JSON.parse(storedBooks));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(APP_KEY, JSON.stringify(books));
+    }, [books]);
 
     const bookRows = books.map((b) => {
         return (
