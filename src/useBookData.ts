@@ -4,10 +4,9 @@ import {createBookSearchUrl, extractBooks} from "./functions/BookAPI";
 
 export const useBookData = (title: string, author: string, maxResults: number) => {
     const [books, setBooks] = useState([] as BookDescription[]);
-    const [isSearching, setIsSearching] = useState(false);
 
     useEffect(() => {
-        if (isSearching) {
+        if (title || author) {
             const url = createBookSearchUrl(
                 title,
                 author,
@@ -27,8 +26,7 @@ export const useBookData = (title: string, author: string, maxResults: number) =
                     console.error(err);
                 });
         }
-        setIsSearching(false);
-    }, [isSearching]);
+    }, [title, author, maxResults]);
 
-    return [books, setIsSearching] as const;
+    return books;
 }
