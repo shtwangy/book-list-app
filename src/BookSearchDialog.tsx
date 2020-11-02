@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {BookDescription} from "./types/BookDescription";
 import BookSearchItem from "./BookSearchItem";
 import {createBookSearchUrl, extractBooks} from "./functions/BookAPI";
@@ -10,13 +10,18 @@ type BookSearchDialogProps = {
 
 const BookSearchDialog = (props: BookSearchDialogProps) => {
     const [books, setBooks] = useState([] as BookDescription[]);
-    const [title, setTitle] = useState("");
-    const [author, setAuthor] = useState("");
     const [isSearching, setIsSearching] = useState(false);
+
+    const titleRef = useRef<HTMLInputElement>(null);
+    const authorRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         if (isSearching) {
-            const url = createBookSearchUrl(title, author, props.maxResults);
+            const url = createBookSearchUrl(
+                titleRef.current!.value,
+                authorRef.current!.value,
+                props.maxResults
+            );
             fetch(url)
                 .then((res) => {
                     return res.json();
@@ -34,16 +39,8 @@ const BookSearchDialog = (props: BookSearchDialogProps) => {
         setIsSearching(false);
     }, [isSearching]);
 
-    const handleTitleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.target.value);
-    };
-
-    const handleAuthorInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setAuthor(e.target.value);
-    };
-
     const handleSearchClick = () => {
-        if (!title && !author) {
+        if (!titleRef.current!.value && !authorRef.current!.value) {
             alert("条件を入力してください");
             return;
         }
@@ -70,12 +67,12 @@ const BookSearchDialog = (props: BookSearchDialogProps) => {
                 <div className="conditions">
                     <input
                         type="text"
-                        onChange={handleTitleInputChange}
+                        ref={titleRef}
                         placeholder="タイトルで検索"
                     />
                     <input
                         type="text"
-                        onChange={handleAuthorInputChange}
+                        ref={authorRef}
                         placeholder="著者名で検索"
                     />
                 </div>
