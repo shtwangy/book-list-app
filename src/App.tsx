@@ -5,6 +5,7 @@ import BookRow from "./BookRow";
 import Modal from "react-modal";
 import BookSearchDialog from "./BookSearchDialog";
 import {BookDescription} from "./types/BookDescription";
+import {Header} from "./components/Header";
 
 const APP_KEY = "book-list-app";
 
@@ -82,12 +83,7 @@ const App = () => {
 
     return (
         <div className="App">
-            <section className="nav">
-                <h1>読みたい本リスト</h1>
-                <div className="button-like" onClick={handleAddClick}>
-                    本を追加
-                </div>
-            </section>
+            <Header onClickBookAd={handleAddClick} />
             <section className="main">
                 {bookRows}
             </section>
