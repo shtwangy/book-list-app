@@ -5,11 +5,7 @@ import { Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) => ({
     "button": {
-        backgroundColor: theme.palette.grey['300'],
-        fontSize: 16,
-        height: 48,
-        marginBottom: 16,
-        width: 256
+        backgroundColor: "#e0e0e0"
     }
 }));
 
