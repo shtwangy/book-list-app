@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from "react";
 import {BookDescription} from "./types/BookDescription";
 import BookSearchItem from "./BookSearchItem";
 import {useBookData} from "./useBookData";
+import {PrimaryButton} from "./components/UIKit";
 
 type BookSearchDialogProps = {
     maxResults: number;
@@ -54,9 +55,7 @@ const BookSearchDialog = (props: BookSearchDialogProps) => {
                         placeholder="著者名で検索"
                     />
                 </div>
-                <div className="button-like" onClick={handleSearchClick}>
-                    検索
-                </div>
+                <PrimaryButton label={'検索'} onClick={handleSearchClick} />
             </div>
             <div className="search-results">{bookItems}</div>
         </div>
