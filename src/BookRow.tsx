@@ -1,5 +1,6 @@
 import React from "react";
 import { BookToRead } from "./types/BookToRead";
+import { GreyButton } from "./components/UIKit";
 
 type BookRowProps = {
     book: BookToRead;
@@ -32,9 +33,7 @@ const BookRow = (props: BookRowProps) => {
                 value={memo}
                 onChange={handleMemoChange}
             />
-            <div className="delete-row" onClick={handleDeleteClick}>
-                削除
-            </div>
+            <GreyButton label={'削除'} onClick={handleDeleteClick} />
         </div>
     );
 };
