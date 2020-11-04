@@ -6,7 +6,10 @@ import {BookDescription} from "../../types/BookDescription";
 const useStyles = makeStyles({
     "button": {
         backgroundColor: "#4dd0e1",
-        color: '#000'
+        color: '#000',
+        fontSize: 16,
+        height: 40,
+        width: 160
     }
 });
 
