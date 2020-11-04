@@ -5,7 +5,10 @@ import { Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) => ({
     "button": {
-        backgroundColor: "#e0e0e0"
+        backgroundColor: "#e0e0e0",
+        fontSize: 16,
+        height: 40,
+        width: 160
     }
 }));
 
